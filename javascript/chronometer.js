@@ -1,7 +1,3 @@
-const {
-  War
-} = require('../../../week2-lab1-vikings/lab-javascript-vikings/src/viking');
-
 class Chronometer {
   constructor() {
     this.currentTime = 0;
@@ -18,6 +14,9 @@ class Chronometer {
     }, 1000);
   }
 
+  getMiniSec() {
+    return Math.floor(this.currentTime / 1000);
+  }
   getMinutes() {
     return Math.floor(this.currentTime / 60);
   }
@@ -43,11 +42,16 @@ class Chronometer {
   }
 
   split() {
+    let miniSec = this.computeTwoDigitNumber(this.getMiniSec());
     let minutes = this.computeTwoDigitNumber(this.getMinutes());
     let seconds = this.computeTwoDigitNumber(this.getSeconds());
-    return `${minutes}:${seconds}`;
+    return `${minutes}:${seconds}:${miniSec}`;
   }
 }
+
+const countChronometer = new Chronometer();
+
+console.log(countChronometer.start());
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
